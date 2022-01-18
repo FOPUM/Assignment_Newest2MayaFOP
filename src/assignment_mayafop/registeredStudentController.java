@@ -125,7 +125,8 @@ public class registeredStudentController implements Initializable, ControlledScr
                                 "WHERE course_status='Y'\n" +
                                 "GROUP BY occ_id\n" +
                                 ") AS currentCa ON currentCa.occ_id=occ.occ_id\n" +
-                                "WHERE staff.staff_id='"+matric_num+"') AS lect\n" +
+                                "WHERE staff.staff_id='"+matric_num+"' \n" +
+                                "GROUP BY lecture.lecture_id) AS lect" +
                                 "\n" +
                                 "UNION ALL \n" +
                                 "\n" +
@@ -147,7 +148,8 @@ public class registeredStudentController implements Initializable, ControlledScr
                                 "WHERE course_status='Y'\n" +
                                 "GROUP BY occ_id\n" +
                                 ") AS currentCa ON currentCa.occ_id=occ.occ_id\n" +
-                                "WHERE staff.staff_id='"+matric_num+"') AS tuto\n" +
+                                "WHERE staff.staff_id='"+matric_num+"' " +
+                                "GROUP BY tutorial.tutorial_id) AS tuto" +
                                 "\n" +
                                 "UNION ALL \n" +
                                 "\n" +
@@ -169,7 +171,8 @@ public class registeredStudentController implements Initializable, ControlledScr
                                 "WHERE course_status='Y'\n" +
                                 "GROUP BY occ_id\n" +
                                 ") AS currentCa ON currentCa.occ_id=occ.occ_id\n" +
-                                "WHERE staff.staff_id='"+matric_num+"') AS labb";
+                                "WHERE staff.staff_id='"+matric_num+"'"+
+                                "GROUP BY lab.lab_id) AS labb;" ;
             //</editor-fold>
             
             ResultSet courseIDQuery = connectDB.createStatement().executeQuery(courseDetailss);

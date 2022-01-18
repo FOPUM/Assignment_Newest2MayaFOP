@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -54,6 +55,8 @@ public class enterEmailPageController implements Initializable, ControlledScreen
 
     @FXML
     private TextField idOrEmailTextField;
+    
+    
 
     @FXML
     private Button next1Button;
@@ -63,6 +66,12 @@ public class enterEmailPageController implements Initializable, ControlledScreen
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        idOrEmailTextField.setOnKeyPressed( event -> {
+            if( event.getCode() == KeyCode.ENTER ) {
+                next1Button.fire();
+            }
+        });
+        
         setidOrEmailTextField(siswamail);
         Animation = new animation();
         if(!upScreenStatus){
